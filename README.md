@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-sg-rule-module?ref=x.y.z
+github.com/pbs/terraform-aws-sg-rule-module?ref=1.0.0
 ```
 
 ### Alternative Installation Methods
@@ -24,7 +24,7 @@ Integrate this module like so:
 
 ```hcl
 module "sg_rule" {
-  source = "github.com/pbs/terraform-aws-sg-rule-module?ref=x.y.z"
+  source = "github.com/pbs/terraform-aws-sg-rule-module?ref=1.0.0"
 
   security_group_id = module.redis.sg_ids[0]
 
@@ -39,7 +39,7 @@ module "sg_rule" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`x.y.z`
+`1.0.0`
 
 Note, however that subtrees can be altered as desired within repositories.
 
