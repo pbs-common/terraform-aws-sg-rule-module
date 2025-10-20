@@ -7,7 +7,7 @@
 Use this URL for the source of the module. See the usage examples below for more details.
 
 ```hcl
-github.com/pbs/terraform-aws-sg-rule-module?ref=0.0.24
+github.com/pbs/terraform-aws-sg-rule-module?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
@@ -24,7 +24,7 @@ Integrate this module like so:
 
 ```hcl
 module "sg_rule" {
-  source = "github.com/pbs/terraform-aws-sg-rule-module?ref=0.0.24"
+  source = "github.com/pbs/terraform-aws-sg-rule-module?ref=x.y.z"
 
   security_group_id = module.redis.sg_ids[0]
 
@@ -39,7 +39,7 @@ module "sg_rule" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.0.24`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -55,8 +55,8 @@ Below is automatically generated documentation on this Terraform module using [t
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.13.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0 |
 
 ## Providers
 
@@ -72,13 +72,24 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_security_group_rule.rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_vpc_security_group_egress_rule.egress_rule_cidrv4](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
+| [aws_vpc_security_group_egress_rule.egress_rule_cidrv6](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
+| [aws_vpc_security_group_egress_rule.egress_rule_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.ingress_rule_cidrv4](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.ingress_rule_cidrv6](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_vpc_security_group_ingress_rule.ingress_rule_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
+| [aws_default_tags.common_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/default_tags) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_description"></a> [description](#input\_description) | Description of the rule. This must clearly describe the purpose of the rule. | `string` | n/a | yes |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment (sharedtools, dev, staging, qa, prod) | `string` | n/a | yes |
+| <a name="input_organization"></a> [organization](#input\_organization) | Organization using this module. Used to prefix tags so that they are easily identified as being from your organization | `string` | n/a | yes |
+| <a name="input_owner"></a> [owner](#input\_owner) | Tag used to group resources according to product | `string` | n/a | yes |
+| <a name="input_product"></a> [product](#input\_product) | Tag used to group resources according to product | `string` | n/a | yes |
+| <a name="input_repo"></a> [repo](#input\_repo) | Tag used to point to the repo using this module | `string` | n/a | yes |
 | <a name="input_security_group_id"></a> [security\_group\_id](#input\_security\_group\_id) | The ID of the security group that contains the rule. | `string` | n/a | yes |
 | <a name="input_from_port"></a> [from\_port](#input\_from\_port) | The start port | `number` | `null` | no |
 | <a name="input_port"></a> [port](#input\_port) | The port to allow. | `number` | `null` | no |
@@ -86,6 +97,7 @@ No modules.
 | <a name="input_source_cidr_blocks"></a> [source\_cidr\_blocks](#input\_source\_cidr\_blocks) | A list of CIDR blocks to allow access from. | `list(string)` | `null` | no |
 | <a name="input_source_ipv6_cidr_blocks"></a> [source\_ipv6\_cidr\_blocks](#input\_source\_ipv6\_cidr\_blocks) | A list of IPv6 CIDR blocks to allow access from. | `list(string)` | `null` | no |
 | <a name="input_source_security_group_id"></a> [source\_security\_group\_id](#input\_source\_security\_group\_id) | The ID of the security group that is allowed access. | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Extra tags | `map(string)` | `{}` | no |
 | <a name="input_to_port"></a> [to\_port](#input\_to\_port) | The end port | `number` | `null` | no |
 | <a name="input_type"></a> [type](#input\_type) | The type of rule to create. Valid values are egress, ingress, and all. | `string` | `"ingress"` | no |
 
