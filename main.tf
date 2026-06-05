@@ -35,7 +35,7 @@ resource "aws_vpc_security_group_ingress_rule" "ingress_rule_cidrv6" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_rule_sg" {
-  count = contains(["ingress", "all"], var.type) ? 1 : 0
+  count = contains(["ingress", "all"], var.type) && var.source_security_group_id != null ? 1 : 0
 
   security_group_id = var.security_group_id
   description       = var.description
@@ -77,7 +77,7 @@ resource "aws_vpc_security_group_egress_rule" "egress_rule_cidrv6" {
 }
 
 resource "aws_vpc_security_group_egress_rule" "egress_rule_sg" {
-  count = contains(["egress", "all"], var.type) ? 1 : 0
+  count = contains(["egress", "all"], var.type) && var.source_security_group_id != null ? 1 : 0
 
   security_group_id = var.security_group_id
   description       = var.description
