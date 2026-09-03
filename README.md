@@ -91,6 +91,7 @@ No modules.
 | <a name="input_product"></a> [product](#input\_product) | Tag used to group resources according to product | `string` | n/a | yes |
 | <a name="input_repo"></a> [repo](#input\_repo) | Tag used to point to the repo using this module | `string` | n/a | yes |
 | <a name="input_security_group_id"></a> [security\_group\_id](#input\_security\_group\_id) | The ID of the security group that contains the rule. | `string` | n/a | yes |
+| <a name="input_create_source_security_group_rule"></a> [create\_source\_security\_group\_rule](#input\_create\_source\_security\_group\_rule) | Whether to create the rule referencing source\_security\_group\_id. Set this explicitly when source\_security\_group\_id is not known until apply. Defaults to whether source\_security\_group\_id is set. | `bool` | `null` | no |
 | <a name="input_from_port"></a> [from\_port](#input\_from\_port) | The start port | `number` | `null` | no |
 | <a name="input_port"></a> [port](#input\_port) | The port to allow. | `number` | `null` | no |
 | <a name="input_protocol"></a> [protocol](#input\_protocol) | The protocol to allow. Valid values are tcp, udp, and all. | `string` | `"tcp"` | no |
