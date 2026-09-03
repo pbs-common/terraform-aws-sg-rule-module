@@ -34,6 +34,12 @@ variable "source_security_group_id" {
   default     = null
 }
 
+variable "create_source_security_group_rule" {
+  description = "Whether to create the rule referencing source_security_group_id. Set this explicitly when source_security_group_id is not known until apply. Defaults to whether source_security_group_id is set."
+  type        = bool
+  default     = null
+}
+
 variable "source_cidr_blocks" {
   description = "A list of CIDR blocks to allow access from."
   type        = list(string)

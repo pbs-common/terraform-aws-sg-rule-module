@@ -4,7 +4,9 @@ locals {
   ingress_source_ipv6_cidr_blocks = contains(["ingress", "all"], var.type) ? { for cidr in coalesce(var.source_ipv6_cidr_blocks, []) : cidr => cidr } : {}
   egress_source_cidr_blocks       = contains(["egress", "all"], var.type) ? { for cidr in coalesce(var.source_cidr_blocks, []) : cidr => cidr } : {}
   egress_source_ipv6_cidr_blocks  = contains(["egress", "all"], var.type) ? { for cidr in coalesce(var.source_ipv6_cidr_blocks, []) : cidr => cidr } : {}
-  source_security_group_id_set    = can(regex(".*", var.source_security_group_id))
+
+  # Must be known at plan time; var.source_security_group_id may be unknown until apply.
+  source_security_group_id_set = var.create_source_security_group_rule != null ? var.create_source_security_group_rule : var.source_security_group_id != null
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ingress_rule_cidrv4" {
